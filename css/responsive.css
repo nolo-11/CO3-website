@@ -69,14 +69,20 @@
         font-size: 1.3rem;
     }
 
-    /* Hero Mobile */
+    /* Hero Mobile - Debe ocupar toda la pantalla */
     .hero {
-        padding: 6rem 0 3rem;
-        min-height: auto;
+        padding: 0;
+        min-height: 100vh;
+        height: 100vh;
+    }
+
+    .hero-container {
+        height: 100%;
     }
 
     .hero-logo-main {
-        width: 60vw;
+        width: 65vw;
+        max-width: 400px;
         min-width: 280px;
     }
 
@@ -85,16 +91,21 @@
     }
 
     .hero-description {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 
     .btn {
         width: 100%;
         max-width: 280px;
+        padding: 0.65rem 1.5rem;
     }
 
     .hero-content {
-        padding: 0 1rem;
+        padding: 0 1.5rem;
+    }
+
+    .hero-buttons {
+        gap: 0.75rem;
     }
 
     /* Services Mobile */
@@ -189,17 +200,31 @@
         padding: 0 0.75rem;
     }
 
+    /* Hero Small Mobile - Full Screen */
+    .hero {
+        height: 100vh;
+        min-height: 100vh;
+    }
+
     .hero-logo-main {
-        width: 70vw;
+        width: 75vw;
+        max-width: 320px;
         min-width: 240px;
     }
 
     .hero-title {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        line-height: 1.3;
     }
 
     .hero-description {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    .btn {
+        padding: 0.6rem 1.25rem;
+        font-size: 0.85rem;
     }
 
     .section-title {

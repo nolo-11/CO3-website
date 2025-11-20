@@ -97,9 +97,16 @@ function handleHeroScroll() {
     if (!heroLogo || !heroContent || !heroSection) return;
 
     const heroRect = heroSection.getBoundingClientRect();
-    const scrollPercentage = Math.max(0, Math.min(1, -heroRect.top / (heroSection.offsetHeight * 0.3)));
+    const windowHeight = window.innerHeight;
 
-    if (scrollPercentage > 0.2) {
+    // En móvil, usar threshold diferente para activar la animación
+    const isMobile = window.innerWidth <= 768;
+    const threshold = isMobile ? 0.15 : 0.2;
+    const divisor = isMobile ? 0.4 : 0.3;
+
+    const scrollPercentage = Math.max(0, Math.min(1, -heroRect.top / (heroSection.offsetHeight * divisor)));
+
+    if (scrollPercentage > threshold) {
         heroLogo.classList.add('scrolled');
         heroContent.classList.add('visible');
     } else {
@@ -109,6 +116,9 @@ function handleHeroScroll() {
 }
 
 window.addEventListener('scroll', handleHeroScroll);
+
+// Ejecutar al cargar para manejar caso de refresh en medio del scroll
+handleHeroScroll();
 
 // Close mobile menu on window resize if above mobile breakpoint
 window.addEventListener('resize', () => {
