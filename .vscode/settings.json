@@ -1,0 +1,38 @@
+{
+  // Live Server Configuration
+  "liveServer.settings.port": 5500,
+  "liveServer.settings.CustomBrowser": "chrome",
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
+
+  // Editor Settings
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 4,
+  "editor.wordWrap": "on",
+  "editor.minimap.enabled": true,
+  "editor.linkedEditing": true,
+
+  // Files Settings
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "files.encoding": "utf8",
+
+  // HTML Settings
+  "html.format.wrapLineLength": 120,
+  "html.format.indentInnerHtml": true,
+
+  // CSS Settings
+  "css.lint.unknownAtRules": "ignore",
+
+  // Prettier Settings
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}

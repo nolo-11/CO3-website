@@ -7,14 +7,25 @@ const navbar = document.getElementById('navbar');
 
 // Mobile Navigation Toggle
 function toggleMobileMenu() {
-    hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
+
+    // Toggle icon between bars and times
+    const icon = hamburger.querySelector('i');
+    if (navMenu.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+    } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    }
 }
 
 // Close mobile menu when clicking on a link
 function closeMobileMenu() {
-    hamburger.classList.remove('active');
     navMenu.classList.remove('active');
+    const icon = hamburger.querySelector('i');
+    icon.classList.remove('fa-times');
+    icon.classList.add('fa-bars');
 }
 
 // Smooth scrolling for navigation links
@@ -60,7 +71,7 @@ const observer = new IntersectionObserver((entries) => {
 
 // Observe elements for animation
 document.addEventListener('DOMContentLoaded', () => {
-    const animatedElements = document.querySelectorAll('.service-card, .benefit-item, .contact-content > *');
+    const animatedElements = document.querySelectorAll('.service-card, .tech-card, .benefit-item, .contact-content > *');
     animatedElements.forEach(el => observer.observe(el));
 });
 
@@ -76,6 +87,28 @@ document.addEventListener('click', (e) => {
 
 // Handle navbar scroll
 window.addEventListener('scroll', handleNavbarScroll);
+
+// Hero Logo Animation on Scroll
+const heroLogo = document.getElementById('hero-logo');
+const heroContent = document.getElementById('hero-content');
+const heroSection = document.querySelector('.hero');
+
+function handleHeroScroll() {
+    if (!heroLogo || !heroContent || !heroSection) return;
+
+    const heroRect = heroSection.getBoundingClientRect();
+    const scrollPercentage = Math.max(0, Math.min(1, -heroRect.top / (heroSection.offsetHeight * 0.3)));
+
+    if (scrollPercentage > 0.2) {
+        heroLogo.classList.add('scrolled');
+        heroContent.classList.add('visible');
+    } else {
+        heroLogo.classList.remove('scrolled');
+        heroContent.classList.remove('visible');
+    }
+}
+
+window.addEventListener('scroll', handleHeroScroll);
 
 // Close mobile menu on window resize if above mobile breakpoint
 window.addEventListener('resize', () => {
@@ -216,6 +249,41 @@ document.querySelectorAll('.nav-link, .btn').forEach(element => {
     element.addEventListener('blur', () => {
         element.style.outline = 'none';
     });
+});
+
+// Theme Toggle
+const themeToggle = document.getElementById('theme-toggle');
+const html = document.documentElement;
+
+// Check for saved theme preference or default to 'dark'
+const currentTheme = localStorage.getItem('theme') || 'dark';
+html.setAttribute('data-theme', currentTheme);
+
+// Update icon based on current theme
+function updateThemeIcon() {
+    const icon = themeToggle.querySelector('i');
+    const theme = html.getAttribute('data-theme');
+
+    if (theme === 'light') {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+    } else {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    }
+}
+
+// Initialize icon
+updateThemeIcon();
+
+// Toggle theme on button click
+themeToggle.addEventListener('click', () => {
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon();
 });
 
 // Console log for debugging (remove in production)
